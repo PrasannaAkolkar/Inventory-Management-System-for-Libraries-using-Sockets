@@ -1,69 +1,68 @@
-﻿EE450
+# Library Management System
 
-Name: Prasanna Akolkar
-Student ID: 5509636102
+## Author Information
+- **Name:** Prasanna Akolkar
+- **Student ID:** 5509636102
 
-Title: Library Management System
-Programming Language: C++
+## Project Overview
+A Library Management System developed in C++ for managing book queries and user authentication in a library setting. The system comprises a main server, three backend servers, and a client, employing TCP and UDP protocols for communication.
 
-Code Tested On: UTM Machine (Due to MAC)
+### Environment
+- **Programming Language:** C++
+- **Tested On:** UTM Machine (Due to MAC compatibility)
 
-Project Description:
+## Components
+- **Main Server (serverM)**
+- **Backend Servers:**
+  - Science Department (serverS)
+  - Literature Department (serverL)
+  - History Department (serverH)
+- **Client**
 
-Compulsory Section:
+## Communication
+- **Client - Main Server:** TCP Protocol
+- **Backend Servers - Main Server:** UDP Protocol
 
-Main Components: 1 main server (serverM), 3 backend servers (serverS, serverL, serverH), and 1 client.
-Connection: serverM and client are connected via TCP protocol. Each backend server is connected with serverM via UDP protocol.
+## Functionality
+- **User Login:** Secure login from client terminal.
+- **Encryption:** Username and password are encrypted as per requirements.
+- **Book Queries:** Authenticated users can query books using book codes.
+- **Authentication Failure:** Prompts re-authentication on the client terminal.
+- **Book Availability Check:** Users can check the availability of books.
 
-Functionality:
+## Optional Features (Extra Credit)
+- **Admin Access:** Special credentials for admin access.
+- **Inventory Management:** Admins can check the count of queried book codes.
+- **Restrictions:** Only admins can access book count data.
 
-User can login from the client terminal.
-Username and password are encrypted as per the requirements document.
-Authenticated users (without admin rights) can query books using the book code.
-Authentication failure leads to a prompt for re-authentication on the client terminal.
-User can check the availability of a book by entering the book code on the terminal.
+## How to Run
+1. Execute `make all` to generate executable files.
+2. Run the servers in the following order (or any):
+   - `./serverM`
+   - `./serverS`
+   - `./serverH`
+   - `./serverL`
+   - `./client`
+3. Ensure `serverM` is operational before running the client. 
+4. To run for a different user, close the client and `serverM` terminals and start them again.
 
+## Code Files
+- `serverM.cpp`: Main server file handling client authentication and book query requests.
+- `serverS.cpp`: Backend server for the Science department.
+- `serverL.cpp`: Backend server for the Literature department.
+- `serverH.cpp`: Backend server for the History department.
+- `client.cpp`: User interface for inputting data and communicating with the main server.
+- `utility.cpp`: Common functions used across backend servers.
+- `utility.h`: Header file for `utility.cpp` with function prototypes.
 
-Optional Section (For extra credit)
-Admin Access: Users logging in with admin credentials (username: admin, password: Admin) can check the count of queried book codes for inventory management.
-Restriction: Only admin users can access book count; others receive only availability status.
-I have also answered queries on piazza for extra credit
+## Message Format
+- **Delimiter:** Messages are delimited by `||--||`.
+- **Example:** Username "Hello" and password "World" sent as `Hello||--||World`. The server splits the message using this delimiter for processing.
 
-How to Run the Code:
+## Idiosyncrasy of the Project
+No noticeable idiosyncrasies - the project works according to the requirements.
 
-Execute make all to generate executable files for all .cpp files.
-Run serverM, followed by serverS, serverH, and serverL (in any order), and then the client.
-Example Order:
-./serverM
-./serverS
-./serverH
-./serverL
-./client
-Ensure serverM is operational before running the client. 
-If you want to run for different user, close the client and serverM terminals and start them again.
-
-
-Code Files:
-
-serverM.cpp: Main server file handling client authentication and book query requests.
-serverS.cpp: Backend server for the Science department, handling requests for books starting with 'S'.
-serverL.cpp: Backend server for the Literature department, handling requests for books starting with 'L'.
-serverH.cpp: Backend server for the History department, handling requests for books starting with 'H'.
-client.cpp: User interface for inputs and sending data to the main server.
-utility.cpp: Common functions used across backend servers.
-utility.h: Header file for utility.cpp containing function prototypes.
-
-Format of Messages Exchanged:
-Delimiter: Messages are delimited by “||--||”.
-Example: Username "Hello" and password "World" sent as "Hello||--||World". The server splits the message using this delimiter for processing.
-
-
-Idiosyncrasy of the Project:
-No noticeable idiosyncrasy of the project (works according to the requirements of the project)
-
-
-
-Reused Code:
-The code for setting up sockets has been borrowed from various sources like Beej, Geeks For Geeks. This is mainly the boilerplate code which is used for setting up connections. (
-Code block for trimming strings has been borrowed from https://www.appsloveworld.com/cplus/100/1/how-to-trim-a-stdstring
-Code block for reading contents from file has been referred from https://stackoverflow.com/questions/13035674/how-to-read-a-file-line-by-line-or-a-whole-text-file-at-once
+## Reused Code
+- Socket setup code sourced from Beej's Guide and Geeks For Geeks.
+- String trimming function from [Appsloveworld](https://www.appsloveworld.com/cplus/100/1/how-to-trim-a-stdstring).
+- File reading code referenced from [Stack Overflow](https://stackoverflow.com/questions/13035674/how-to-read-a-file-line-by-line-or-a-whole-text-file-at-once).
